@@ -24,6 +24,3 @@ You can also translate to all of the above languages simultaneously by setting t
 If you're on Windows, you can try it out for yourself by downloading ``translator.zip`` [here](https://github.com/jasonalantolbert/Multilingual-Online-Translator/releases/). Extract the archive to a folder of your choice, then run the ``setup.cmd`` file inside before running ``translator.py``. macOS and Linux users will need to extract ``translator.zip`` and manually run ``pip install -r requirements.txt`` inside the folder.
 
 This program was written in and tested with Python 3.8. Compatibility with older - or newer - versions of Python is not guaranteed. Download Python: https://www.python.org/downloads/
-
-This program was written as part of a JetBrains Academy project.
-For more information, visit https://hyperskill.org/projects/99.
