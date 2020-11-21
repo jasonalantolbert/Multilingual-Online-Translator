@@ -39,9 +39,6 @@ def select_language():  # gets two languages and a word from the user via the co
     target = input("Target language: ")
     word = input("Word to translate: ")
 
-    # binds string "Saved Translations/{word}/{source}-{target}.txt" to global variable tr_filepath
-    globals()["tr_filepath"] = f"Saved Translations/{word}_{source}-{target}.env"
-
     print(f"\nTranslating '{word}' from {source.capitalize()} to "
           f"{target.capitalize() if target != 'all' else 'all languages'}...\n")
     return source.lower(), target.lower(), word.lower()
@@ -89,33 +86,24 @@ def check_site_connection(site):  # checks that the translation service returns 
     return True if site.status_code == 200 else False
 
 
-def print_translation(string):
-    # when called, this function prints the information passsed to it both to the console and a to file named
-    # with the value of global variable tr_filepath
-    print(string)
-    path = globals()["tr_filepath"]
-    with open(path, "a+") as tr_file:
-        tr_file.write(f"{string}\n")
-
-
 def present(soup, lang):  # presents the translation information in a human-readable format
     translations = soup.find_all(class_=re.compile("^translation"))
-    print_translation(f"\n{lang.capitalize()} Translations:")
+    print(f"\n{lang.capitalize()} Translations:")
     if len(translations) >= 3:
         for index, element in enumerate(translations):
             if index in range(2, 7):
-                print_translation(re.sub("^\s*|\n", '', element.get_text()))
+                print(re.sub("^\s*|\n", '', element.get_text()))
             elif index > 6:
                 break
     else:
-        print_translation("None")
+        print("None")
 
-    print_translation(f"\n{lang.capitalize()} Examples:")
+    print(f"\n{lang.capitalize()} Examples:")
     for index, element in enumerate(soup.find_all(class_="example")):
         if index in range(0, 6):
             src, trg = [re.compile("^src"), re.compile("^trg")]
             for mode in [src, trg]:
-                print_translation(re.sub("^\s*|\n", '', element.find(class_=mode).get_text())
+                print(re.sub("^\s*|\n", '', element.find(class_=mode).get_text())
                                   + (":" if mode == src else '\n'))
         elif index > 5:
             break
