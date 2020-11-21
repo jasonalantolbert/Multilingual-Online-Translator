@@ -18,5 +18,3 @@ Supported languages include, in alphabetical order:
 * Turkish
 
 You can also translate to all of the above languages simultaneously by setting the target language to ``all``.
-
-Once performed, translations are automatically saved in the `Saved Translations` folder.
