@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "multilingual online translator"
+name = "multilingual-online-translator"
 version = "0.1.0"
 description = ""
 authors = ["Jason Tolbert <jasonalantolbert@gmail.com>"]
