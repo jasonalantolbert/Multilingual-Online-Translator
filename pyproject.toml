@@ -8,6 +8,7 @@ authors = ["Jason Tolbert <jasonalantolbert@gmail.com>"]
 python = "^3.8"
 requests = "^2.25.0"
 beautifulsoup4 = "^4.9.3"
+lxml = "^4.6.1"
 
 [tool.poetry.dev-dependencies]
 
