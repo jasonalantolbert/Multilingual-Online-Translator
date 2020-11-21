@@ -40,7 +40,7 @@ def select_language():  # gets two languages and a word from the user via the co
     word = input("Word to translate: ")
 
     # binds string "Saved Translations/{word}/{source}-{target}.txt" to global variable tr_filepath
-    globals()["tr_filepath"] = f"Saved Translations/{word}_{source}-{target}.txt"
+    globals()["tr_filepath"] = f"Saved Translations/{word}_{source}-{target}.env"
 
     print(f"\nTranslating '{word}' from {source.capitalize()} to "
           f"{target.capitalize() if target != 'all' else 'all languages'}...\n")
