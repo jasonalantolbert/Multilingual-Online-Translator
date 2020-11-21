@@ -6,9 +6,9 @@
 # BEGINNING OF PROGRAM
 
 
-import re
 import os
-import argparse
+import re
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -29,29 +29,25 @@ supported_languages = {  # dictionary of languages supported by the translator
     13: "turkish"
 }
 
-
 session = requests.Session()  # opens a new requests session
 
 
 def select_language():  # gets two languages and a word from the user via the command line
 
     # command line argument parsing
-    parser = argparse.ArgumentParser()
-    cli_args = ["source", "target", "word"]
-    for argument in cli_args:
-        parser.add_argument(argument)
-    args = parser.parse_args()
+    source = input("Source language: ")
+    target = input("Target language: ")
+    word = input("Word to translate: ")
 
-    # binds string "Saved Translations/{args.word}/{args.source}-{args.target}.txt" to global variable tr_filepath
-    globals()["tr_filepath"] = f"Saved Translations/{args.word}_{args.source}-{args.target}.txt"
-    
-    print(f"\nTranslating '{args.word}' from {args.source.capitalize()} to "
-          f"{args.target.capitalize() if args.target != 'all' else 'all languages'}...\n")
-    return args.source, args.target, args.word
+    # binds string "Saved Translations/{word}/{source}-{target}.txt" to global variable tr_filepath
+    globals()["tr_filepath"] = f"Saved Translations/{word}_{source}-{target}.txt"
+
+    print(f"\nTranslating '{word}' from {source.capitalize()} to "
+          f"{target.capitalize() if target != 'all' else 'all languages'}...\n")
+    return source.lower(), target.lower(), word.lower()
 
 
 def validate(source, target, word):
-
     # language choice validation
     if source not in supported_languages.values() or target not in supported_languages.values():
         print(f"Sorry, this translator doesn't support "
@@ -155,6 +151,5 @@ def main():  # acts as master control for the rest of the program
 
 
 main()  # runs main()
-
 
 # END OF PROGRAM
