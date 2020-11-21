@@ -99,12 +99,16 @@ def print_translation(string):
 
 
 def present(soup, lang):  # presents the translation information in a human-readable format
+    translations = soup.find_all(class_=re.compile("^translation"))
     print_translation(f"\n{lang.capitalize()} Translations:")
-    for index, element in enumerate(soup.find_all(class_=re.compile("^translation"))):
-        if index in range(2, 7):
-            print_translation(re.sub("^\s*|\n", '', element.get_text()))
-        elif index > 6:
-            break
+    if len(translations) >= 3:
+        for index, element in enumerate(translations):
+            if index in range(2, 7):
+                print_translation(re.sub("^\s*|\n", '', element.get_text()))
+            elif index > 6:
+                break
+    else:
+        print_translation("None")
 
     print_translation(f"\n{lang.capitalize()} Examples:")
     for index, element in enumerate(soup.find_all(class_="example")):
