@@ -6,7 +6,6 @@
 # BEGINNING OF PROGRAM
 
 
-import os
 import re
 
 import requests
@@ -104,14 +103,12 @@ def present(soup, lang):  # presents the translation information in a human-read
             src, trg = [re.compile("^src"), re.compile("^trg")]
             for mode in [src, trg]:
                 print(re.sub("^\s*|\n", '', element.find(class_=mode).get_text())
-                                  + (":" if mode == src else '\n'))
+                      + (":" if mode == src else '\n'))
         elif index > 5:
             break
 
 
 def main():  # acts as master control for the rest of the program
-    if not os.path.exists("Saved Translations"):
-        os.mkdir("Saved Translations")  # creates saved translations directory if nonexistent
     orig_language, dest_language, word = select_language()  # gets languages and word from select_language()
 
     if validate(orig_language, dest_language, word):  # validates the user input with validate()
